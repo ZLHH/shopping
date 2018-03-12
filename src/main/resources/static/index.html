@@ -436,6 +436,29 @@
 
 </div>
 <!--底部结束-->
+<script>
+    //登录
+    function login() {
+        var account = $("#memberAcct").val();
+        var password = $("#memberPwd").val();
+        console.log(account);
+        console.log(password);
+        $.ajax({
+            url: '/shopping/login',
+            type: 'post',
+            dataType: "json",
+            data: "account=" + account + "&password=" + password,
+            success: function (data) {
+                if (data.code == '100') {
+                    alert(data.msg);
+                    window.location.href = "index.html";
+                } else {
+                    alert(data.msg);
+                }
+            }
+        });
+    }
+</script>
 
 <!--弹框-->
 <div class="popup">
@@ -462,7 +485,9 @@
                         <input id="memberPwd" class="generateInput memberPwdInput" type="password" placeholder="密码"}>
                     </div>
                     <div class="loginButton loginButton">
-                        <div class="middle">登录</div>
+                        <div>
+                            <button class="middle"  onclick="login()">登录</button>
+                        </div>
                     </div>
                     <div class="bott"></div>
                 </div>
