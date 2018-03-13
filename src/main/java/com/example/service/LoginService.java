@@ -1,6 +1,10 @@
 package com.example.service;
 
 
+import com.example.dao.LoginDAO;
+import com.example.domain.UserMain;
+import com.example.domain.UserMainDetail;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,4 +12,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class LoginService {
+
+    @Autowired
+    LoginDAO loginDAO;
+
+    public UserMain querryIdByName(String name){
+        return loginDAO.querryIdByName(name);
+    }
+
+    public UserMainDetail querryById(Integer id){
+        return loginDAO.querryById(id);
+    }
 }
