@@ -7,13 +7,14 @@
     <link href="css/common.css"rel="stylesheet">
     <link href="css/share.css"rel="stylesheet">
     <script src="js/jquery-1.12.3.js"></script>
-    </script><script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="js/My.js"></script>
 </head>
 <body>
 
 <div class="right">
     <span class="left">&nbsp;</span>
-    <div>
+    <div id="loginbox">
         <a class="logout">&nbsp;&nbsp;&nbsp;&nbsp;退出</a>
         <a class="buttn butto">注册&nbsp;|&nbsp;登录</a>
     </div>
@@ -439,12 +440,34 @@
 </div>
 <!--底部结束-->
 <script>
+    $(function(){
+        $.ajax({
+            url: '/shopping/checklogin',
+            type: 'post',
+            async:false,
+            dataType: "json",
+            success: function (data) {
+                if (data.code == 100) {
+                    var divlogin=$("#loginbox");
+                    var text="您好！欢迎来到果然新鲜！";
+                    var href=$("<a></a>").text("个人中心");
+                    divlogin.empty();
+                    divlogin.append(text).append(href).attr("href","student/index").append("| ");
+                    alert("已登录！！！");
+                    return true;
+                } else {
+                    // alert("请先登录！！！");
+                    // window.location.href = "index.html";
+                    return false;
+                }
+            }
+
+        });
+    });
     //登录
     function login() {
         var account = $("#memberAcct").val();
         var password = $("#memberPwd").val();
-        console.log(account);
-        console.log(password);
         $.ajax({
             url: '/shopping/login',
             type: 'post',
@@ -459,6 +482,47 @@
                 }
             }
         });
+    }
+
+    //注册
+    function register() {
+        var account = $("#memberSignupAccount").val();
+        var password = $("#memberSignupPwd").val();
+        var repwd = $("#memberSignupRepwd").val();
+        var email = $("#email").val();
+        var verifycode = $("#memberSignupCaptcha").val();
+        if (password != repwd){
+            alert("两次密码输入不一致");
+        }
+        $.ajax({
+            url: '/shopping/register',
+            type: 'post',
+            dataType: "json",
+            data: "account=" + account + "&password=" + password+"email="+email+"code="+verifycode,
+            success: function (data) {
+                if (data.code == '100') {
+
+                } else {
+                    alert(data.msg);
+                }
+            }
+        });
+    }
+
+    function getCode(n) {
+        var all = "azxcvbnmsdfghjklqwertyuiopZXCVBNMASDFGHJKLQWERTYUIOP0123456789";
+        var b = "";
+        for (var i = 0; i < n; i++) {
+            var index = Math.floor(Math.random() * 62);
+            b += all.charAt(index);
+
+        }
+        return b;
+    };
+
+    function change() {
+        document.getElementById("memberSignupCaptchaImg").innerHTML = getCode(4);
+
     }
 </script>
 
@@ -500,7 +564,7 @@
                         </div>
                         <div class="memberSignupItem">
                             <div class="itemMiddle">
-                                <input type="text" placeholder="账号" >
+                                <input type="text" id="memberSignupAccount"  placeholder="账号" >
                             </div>
                             <div class="itemRight">*</div>
                         </div>
@@ -527,12 +591,12 @@
                                 <input id="memberSignupCaptcha" type="text" maxlength="4" placeholder="验证码">
                             </div>
                             <div class="itemRightp">
-                                <img alt="" id="memberSignupCaptchaImg" class="memberSignupCaptchaImg" onclick="Site.changeCaptchaImg(this)" title="看不清，换一张" src="images/validateCode.jpg">
+                                <img alt="" id="memberSignupCaptchaImg" class="memberSignupCaptchaImg" onclick="change()" title="看不清，换一张" src="images/validateCode.jpg">
                             </div>
                         </div>
                     </div>
                     <div class="loginButton loginButton">
-                        <div class="middle">注册</div>
+                        <div class="middle" onclick="register()">注册</div>
                     </div>
                     <div class="bott"></div>
                 </div>

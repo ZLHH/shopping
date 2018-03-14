@@ -4,15 +4,16 @@ import com.example.domain.Msg;
 import com.example.domain.UserMain;
 import com.example.domain.UserMainDetail;
 import com.example.service.LoginService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 
 /**
  * Created by zhanglh on 2018/3/12.
@@ -21,8 +22,21 @@ import java.util.Date;
 @RequestMapping("/shopping")
 public class LoginController {
 
+    private Logger logger = LoggerFactory.getLogger(LoginController.class);
+
     @Autowired
     LoginService loginService;
+
+
+    @RequestMapping(value = "/checklogin", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg checklogin(HttpSession session){
+        UserMain userMain=(UserMain) session.getAttribute("userMain");
+        if(userMain!=null){
+            return Msg.success("").add("student", userMain);
+        }
+        return Msg.error("");
+    }
 
 
     @RequestMapping("/login")
@@ -33,6 +47,7 @@ public class LoginController {
         if (userMain!=null){
             UserMainDetail userMainDetail = loginService.querryById(userMain.getId());
             if (userMainDetail.getPassword().equals(password)){
+                session.setAttribute("userMain", userMain);
                 return Msg.success("登陆成功");
             }else {
                 return Msg.success("登陆失败，密码错误");
