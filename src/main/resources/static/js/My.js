@@ -169,7 +169,7 @@ function showBox1() {
 //退出
 $(document).on("click", ".logout", function () {
     $.ajax({
-        url: 'logout',
+        url: '/shopping/logout',
         type: 'post',
         success: function () {
             window.location.reload();

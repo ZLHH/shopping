@@ -15,7 +15,6 @@
 <div class="right">
     <span class="left">&nbsp;</span>
     <div id="loginbox">
-        <a class="logout">&nbsp;&nbsp;&nbsp;&nbsp;退出</a>
         <a class="buttn butto">注册&nbsp;|&nbsp;登录</a>
     </div>
 </div>
@@ -451,8 +450,9 @@
                     var divlogin=$("#loginbox");
                     var text="您好！欢迎来到果然新鲜！";
                     var href=$("<a></a>").text("个人中心");
+                    var logout_a=$("<a></a>").attr("href","").addClass("logout").text(" 退出");
                     divlogin.empty();
-                    divlogin.append(text).append(href).attr("href","student/index").append("| ");
+                    divlogin.append(text).append(href).attr("href","student/index").append("&nbsp;| ").append(logout_a);
                     alert("已登录！！！");
                     return true;
                 } else {
@@ -484,6 +484,16 @@
         });
     }
 
+    $(document).on("click", ".logout", function () {
+        $.ajax({
+            url: '/shopping/logout',
+            type: 'post',
+            success: function () {
+                window.location.reload();
+            }
+        });
+    });
+
     //注册
     function register() {
         var account = $("#memberSignupAccount").val();
@@ -498,12 +508,13 @@
             url: '/shopping/register',
             type: 'post',
             dataType: "json",
-            data: "account=" + account + "&password=" + password+"email="+email+"code="+verifycode,
+            data: "account=" + account + "&password=" + password+"&email="+email+"&code="+verifycode,
             success: function (data) {
                 if (data.code == '100') {
-
-                } else {
                     alert(data.msg);
+                    window.location.href = "index.html";
+                } else {
+                    alert("注册失败");
                 }
             }
         });

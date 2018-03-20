@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
+
 /**
  * Created by zhanglh on 2018/3/20.
  */
@@ -22,6 +24,9 @@ public class RegisterServiceTest {
         UserMain userMain = new UserMain();
         userMain.setName("bob");
         userMain.setEmail("15279106323@163.com");
+        userMain.setNickName("user");
+        userMain.setRole(0);
+        userMain.setCreateTime(LocalDateTime.now());
         registerService.register(userMain);
     }
 }

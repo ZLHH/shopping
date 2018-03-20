@@ -56,4 +56,10 @@ public class LoginController {
             return Msg.error("登陆失败，账号不存在");
         }
     }
+
+    @RequestMapping(value = "/logout",method = RequestMethod.POST)
+    @ResponseBody
+    public void logout(HttpSession session){
+        session.removeAttribute("userMain");
+    }
 }

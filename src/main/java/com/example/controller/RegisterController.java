@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
  * Created by zhanglh on 2018/3/14.
  */
 @RestController
-@RequestMapping("/shop")
+@RequestMapping("/shopping")
 public class RegisterController {
 
     private Logger logger = LoggerFactory.getLogger(RegisterController.class);
@@ -35,16 +35,14 @@ public class RegisterController {
     @ResponseBody
     public Msg register(HttpServletRequest request, String account, String password, String email, String verifycode) {
         HttpSession session = request.getSession();
-        // 获取验证码
-        String code = (String) request.getSession().getAttribute("RANDOM_CODE_KEY");
-        System.out.println("account"+account);
         UserMain userMain = new UserMain();
         userMain=loginService.querryIdByName(account);
         if (userMain != null){
             return Msg.error("账号已存在！");
         }else{
-            userMain.setName(account);
-            userMain.setEmail(email);
+            userMain = new UserMain();
+            userMain.setName(account.toString());
+            userMain.setEmail(email.toString());
             userMain.setNickName("user");
             userMain.setRole(0);
             userMain.setCreateTime(LocalDateTime.now());
@@ -54,7 +52,7 @@ public class RegisterController {
         UserMainDetail userMainDetail = new UserMainDetail();
         userMainDetail.setPassword(password);
         userMainDetail.setPhoneNumber("15279106323");
-        userMainDetail.setRegisterTime(LocalDateTime.now());
+        userMainDetail.setCreateTime(LocalDateTime.now());
         registerService.registerDetail(userMainDetail);
 
         return Msg.success("注册成功!");

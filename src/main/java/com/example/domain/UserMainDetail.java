@@ -13,7 +13,7 @@ public class UserMainDetail {
 
     private String phoneNumber;
 
-    private LocalDateTime registerTime;
+    private LocalDateTime createTime;
 
     public Integer getId() {
         return id;
@@ -39,11 +39,11 @@ public class UserMainDetail {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDateTime getRegisterTime() {
-        return registerTime;
+    public LocalDateTime getCreateTime() {
+        return createTime;
     }
 
-    public void setRegisterTime(LocalDateTime registerTime) {
-        this.registerTime = registerTime;
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
     }
 }
