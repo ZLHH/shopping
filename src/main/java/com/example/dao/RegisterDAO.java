@@ -1,5 +1,7 @@
 package com.example.dao;
 
+import com.example.domain.UserMain;
+import com.example.domain.UserMainDetail;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -7,4 +9,8 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface RegisterDAO {
+
+    void save(UserMain userMain);
+
+    void saveDetail(UserMainDetail userMainDetail);
 }

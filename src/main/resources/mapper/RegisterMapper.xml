@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.RegisterDAO">
+    <resultMap id="UserMainResult" type="com.example.domain.UserMain">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+        <result column="role" jdbcType="INTEGER" property="role" />
+    </resultMap>
+
+    <insert id="save" parameterType="com.example.domain.UserMain" useGeneratedKeys="true" keyProperty="id">
+        insert into t_company
+        (
+        `name`,
+        `email`,
+        `nick_name`,
+        `role`,
+        `create_time`
+        )
+        values
+        (
+        #{name},
+        #{email},
+        #{nickName},
+        #{role},
+        #{createTime}
+        )
+    </insert>
+
+    <insert id="saveDetail" parameterType="com.example.domain.UserMainDetail" useGeneratedKeys="true" keyProperty="id">
+        insert into t_company
+        (
+        `password`,
+        `phone_number`,
+        `register_time`,
+        )
+        values
+        (
+        #{password},
+        #{phoneNumber},
+        #{registerTime}
+        )
+    </insert>
+
+</mapper>
+

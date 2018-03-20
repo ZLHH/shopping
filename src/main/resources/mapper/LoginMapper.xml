@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
 <mapper namespace="com.example.dao.LoginDAO">
-  <resultMap id="UserMainResult" type="com.example.domain.UserMain">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
-    <result column="role" jdbcType="INTEGER" property="role" />
+  <resultMap  type="com.example.domain.UserMain" id="UserMainResult">
+    <id column="id"  property="id" />
+    <result column="name"  property="name" />
+    <result column="email"  property="email" />
+    <result column="nick_name"  property="nickName" />
+    <result column="role"   property="role" />
+    <result column="create_time"  property="createTime" />
   </resultMap>
 
-  <resultMap id="UserMainDetail" type="com.example.domain.UserMainDetail">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+  <resultMap  type="com.example.domain.UserMainDetail" id="UserMainDetail">
+    <id column="id"  property="id" />
+    <result column="password"   property="password" />
+    <result column="phone_number"  property="phoneNumber" />
+    <result column="register_time"   property="registerTime" />
   </resultMap>
 
   <select id="querryIdByName" resultMap="UserMainResult">

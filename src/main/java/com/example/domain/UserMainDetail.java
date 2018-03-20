@@ -1,5 +1,7 @@
 package com.example.domain;
 
+import java.time.LocalDateTime;
+
 /**
  * Created by zhanglh on 2018/3/13.
  */
@@ -10,6 +12,8 @@ public class UserMainDetail {
     private String password;
 
     private String phoneNumber;
+
+    private LocalDateTime registerTime;
 
     public Integer getId() {
         return id;
@@ -33,5 +37,13 @@ public class UserMainDetail {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public LocalDateTime getRegisterTime() {
+        return registerTime;
+    }
+
+    public void setRegisterTime(LocalDateTime registerTime) {
+        this.registerTime = registerTime;
     }
 }

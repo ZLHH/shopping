@@ -1,5 +1,7 @@
 package com.example.domain;
 
+import java.time.LocalDateTime;
+
 /**
  * Created by zhanglh on 2018/3/12.
  */
@@ -14,6 +16,8 @@ public class UserMain {
     private String nickName;
 
     private Integer role;
+
+    private LocalDateTime createTime;
 
     public Integer getId() {
         return id;
@@ -53,5 +57,13 @@ public class UserMain {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
     }
 }

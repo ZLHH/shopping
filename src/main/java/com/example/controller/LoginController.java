@@ -50,10 +50,10 @@ public class LoginController {
                 session.setAttribute("userMain", userMain);
                 return Msg.success("登陆成功");
             }else {
-                return Msg.success("登陆失败，密码错误");
+                return Msg.error("登陆失败，密码错误");
             }
         }else {
-            return Msg.success("登陆失败，账号不存在");
+            return Msg.error("登陆失败，账号不存在");
         }
     }
 }
