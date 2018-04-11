@@ -83,7 +83,6 @@ $(".txtMarquee-top").slide({mainCell:".bd ul",autoPlay:true,effect:"topMarquee",
 $(".slideBox").slide({mainCell:".bd ul",autoPlay:true,trigger:"click"});
 
 
-
 //切换菜单
 $('.hd li').click(function(){
     $('.bd1').css('display','none')
@@ -105,19 +104,6 @@ $('.lhd li').click(function(){
 })
 
 
-//弹窗
-$('.buttn').click(function(){
-    $('.popup:eq(0)').css('display','block')
-})
-$('.del:eq(0)').click(function(){
-    $('.popup:eq(0)').css('display','none')
-})
 
-//弹窗
-$('.buttn').click(function(){
-    $('.popup:eq(0)').css('display','block')
-})
-$('.del:eq(0)').click(function(){
-    $('.popup:eq(0)').css('display','none')
-})
+
 

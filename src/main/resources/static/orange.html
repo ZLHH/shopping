@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <title>果然新鲜</title>
     <link href="css/orange.css"rel="stylesheet">
+    <link href="css/tanchuang.css"rel="stylesheet">
     <link href="css/common.css"rel="stylesheet">
     <link href="css/share.css"rel="stylesheet">
     <script src="js/jquery-1.12.3.js"></script>
-    </script><script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="js/My.js"></script>
 </head>
 <body>
 <div class="right">
     <span class="left">&nbsp;</span>
-    <div>
-        <a class="logout">&nbsp;&nbsp;&nbsp;&nbsp;退出</a>
-        <a class="buttn butto">注册&nbsp;|&nbsp;登录</a>
+    <div id="loginbox">
     </div>
 </div>
 <!--顶部导航-->
@@ -94,7 +94,7 @@
            <div class="pic">
                <span class="ppi">价格:</span>
                <span class="f-mallUnit">￥</span>
-               <span class="pcc">29.00</span>
+               <span class="pcc">data.productPrice</span>
            </div>
             <div class="pict">
                 <div class="f-proSatifySumWrap">
@@ -228,6 +228,7 @@
 
 </div>
 <!--底部结束-->
+<script src="js/banner.js"></script>
 <!--弹框-->
 <div class="popup">
     <div class="login">
@@ -253,15 +254,20 @@
                         <input id="memberPwd" class="generateInput memberPwdInput" type="password" placeholder="密码"}>
                     </div>
                     <div class="loginButton loginButton">
-                        <div class="middle">登录</div>
+                        <div class="middle" onclick="login()">
+                            登录
+                        </div>
                     </div>
                     <div class="bott"></div>
                 </div>
                 <div class="lbd1">
                     <div class="msv">
+                        <div>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        </div>
                         <div class="memberSignupItem">
                             <div class="itemMiddle">
-                                <input type="text" placeholder="账号" >
+                                <input type="text" id="memberSignupAccount"  placeholder="账号" >
                             </div>
                             <div class="itemRight">*</div>
                         </div>
@@ -279,25 +285,7 @@
                         </div>
                         <div class="memberSignupItem">
                             <div class="itemMiddle">
-                                <input id="name" name="姓名" placeholder="姓名" class="userAddItem isCheckUAI" type="text" maxlength="50">
-                            </div>
-                            <div class="itemRight">*</div>
-                        </div>
-                        <div class="memberSignupItem">
-                            <div class="itemMiddle">
                                 <input id="email" name="邮箱" placeholder="邮箱" class="userAddItem" type="text" maxlength="50">
-                            </div>
-                            <div class="itemRight"></div>
-                        </div>
-                        <div class="memberSignupItem">
-                            <div class="itemMiddle">
-                                <input id="phone" name="电话" placeholder="电话" class="userAddItem" type="text" maxlength="50">
-                            </div>
-                            <div class="itemRight"></div>
-                        </div>
-                        <div class="memberSignupItem_remark">
-                            <div class="itemMiddle">
-                                <textarea id="memberSignupRemark" placeholder="留言" maxlength="200"></textarea>
                             </div>
                             <div class="itemRight"></div>
                         </div>
@@ -306,12 +294,12 @@
                                 <input id="memberSignupCaptcha" type="text" maxlength="4" placeholder="验证码">
                             </div>
                             <div class="itemRightp">
-                                <img alt="" id="memberSignupCaptchaImg" class="memberSignupCaptchaImg" onclick="Site.changeCaptchaImg(this)" title="看不清，换一张" src="images/validateCode.jpg">
+                                <img alt="" id="memberSignupCaptchaImg" class="memberSignupCaptchaImg" onclick="change()" title="看不清，换一张" src="images/validateCode.jpg">
                             </div>
                         </div>
-                   </div>
+                    </div>
                     <div class="loginButton loginButton">
-                        <div class="middle">注册</div>
+                        <div class="middle" onclick="register()">注册</div>
                     </div>
                     <div class="bott"></div>
                 </div>
