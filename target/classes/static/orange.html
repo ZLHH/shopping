@@ -221,7 +221,7 @@
         </div>
         <div class="banq">
             <p>©2016 果然新鲜 版权所有</p>
-            <p>手机版 | 本站使用<span><img src="images/ft.jpg"></span>凡科建站搭建 | 管理登录</p>
+            <p>手机版 | 本站使用<span><img src="images/ft.jpg"></span>建站搭建 | 管理登录</p>
         </div>
 
     </div>
@@ -229,6 +229,27 @@
 </div>
 <!--底部结束-->
 <script src="js/banner.js"></script>
+<script>
+
+    $(function () {
+        var ele = $(".cont-top");
+        var id = window.location.href.split("=")[1];
+        showDetail(ele, id);
+    });
+
+    function showDetail(ele, id) {
+        $(ele).empty();
+        $.get("querry/"+id, function(r){
+            console.log(r.map.productInfo);
+            if (r.code == 100) {
+                console.log(r.map.productInfo);
+            } else {
+
+            }
+        });
+    }
+</script>
+
 <!--弹框-->
 <div class="popup">
     <div class="login">

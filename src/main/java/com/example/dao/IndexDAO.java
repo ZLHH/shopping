@@ -13,4 +13,6 @@ public interface IndexDAO {
 
     List<ProductInfo> querryAll();
 
+    ProductInfo getProductById(Integer id);
+
 }

@@ -18,4 +18,8 @@ public class IndexService {
     public List<ProductInfo> querryAll(){
         return indexDAO.querryAll();
     }
+
+    public ProductInfo getProductById(Integer id){
+        return indexDAO.getProductById(id);
+    }
 }
