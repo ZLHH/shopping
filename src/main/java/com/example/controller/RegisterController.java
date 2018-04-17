@@ -44,15 +44,18 @@ public class RegisterController {
             userMain.setName(account.toString());
             userMain.setEmail(email.toString());
             userMain.setNickName("user");
-            userMain.setRole(0);
+            userMain.setStatus(0);
             userMain.setCreateTime(LocalDateTime.now());
+            userMain.setRole(0);
             registerService.register(userMain);
             session.setAttribute("userMain", userMain);
         }
+        userMain=loginService.querryIdByName(account);
         UserMainDetail userMainDetail = new UserMainDetail();
         userMainDetail.setPassword(password);
         userMainDetail.setPhoneNumber("15279106323");
         userMainDetail.setCreateTime(LocalDateTime.now());
+        userMainDetail.setUserId(userMain.getId());
         registerService.registerDetail(userMainDetail);
 
         return Msg.success("注册成功!");

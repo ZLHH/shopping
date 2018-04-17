@@ -25,7 +25,7 @@ public class RegisterServiceTest {
         userMain.setName("bob");
         userMain.setEmail("15279106323@163.com");
         userMain.setNickName("user");
-        userMain.setRole(0);
+        userMain.setStatus(0);
         userMain.setCreateTime(LocalDateTime.now());
         registerService.register(userMain);
     }

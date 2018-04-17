@@ -15,6 +15,8 @@ public class UserMainDetail {
 
     private LocalDateTime createTime;
 
+    private Integer userId;
+
     public Integer getId() {
         return id;
     }
@@ -45,5 +47,13 @@ public class UserMainDetail {
 
     public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

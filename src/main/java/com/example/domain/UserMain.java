@@ -15,9 +15,11 @@ public class UserMain {
 
     private String nickName;
 
-    private Integer role;
+    private Integer status;
 
     private LocalDateTime createTime;
+
+    private Integer role;
 
     public Integer getId() {
         return id;
@@ -51,12 +53,12 @@ public class UserMain {
         this.nickName = nickName;
     }
 
-    public Integer getRole() {
-        return role;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setRole(Integer role) {
-        this.role = role;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public LocalDateTime getCreateTime() {
@@ -65,5 +67,13 @@ public class UserMain {
 
     public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
     }
 }

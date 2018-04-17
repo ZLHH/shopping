@@ -9,16 +9,18 @@
         `name`,
         `email`,
         `nick_name`,
-        `role`,
-        `create_time`
+        `status`,
+        `create_time`,
+        `role`
         )
         values
         (
         #{name},
         #{email},
         #{nickName},
-        #{role},
-        #{createTime}
+        #{status},
+        #{createTime},
+        #{role}
         )
     </insert>
 
@@ -27,13 +29,15 @@
         (
         `password`,
         `phone_number`,
-        `create_time`
+        `create_time`,
+         `user_id`
         )
         values
         (
         #{password},
         #{phoneNumber},
-        #{createTime}
+        #{createTime},
+        #{userId}
         )
     </insert>
 
