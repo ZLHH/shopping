@@ -40,3 +40,23 @@ $(document).on("click", ".del", function () {
     $('.popup:eq(0)').css('display','none')
 });
 
+$(function () {
+    var ele = $(".headr-right");
+    $.ajax({
+        url: '/shoppingcar/totle',
+        type: 'GET',
+        dataType: "json",
+        data: null,
+        success: function (data) {
+            if (data.code == '100') {
+                var href=$("<span></span>").text("我的购物车("+data.map.totle+")");
+                ele.append(href);
+            }
+        }
+    });
+});
+
+$(document).on("click", ".headr-right", function () {
+    window.location.href='shoppingcar.html';
+});
+

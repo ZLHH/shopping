@@ -41,25 +41,6 @@ $('.webSiteQrCode:eq(0)').mouseover(function(){
 
 
 
-var ainp =document.getElementsByClassName('f-countBtn')
-var sel =document.getElementsByClassName('g_itext')[0]
-ainp[0].onclick = function () {
-    var num1=parseInt(sel.value)
-    num1= num1 + 1
-    ainp[1].disabled =false;
-    ainp[1].style.cursor = 'auto';
-    sel.value=num1
-};
-ainp[1].onclick = function () {
-    var num1=parseInt(sel.value)
-    num1= num1 - 1
-    if(num1 < 1){
-        num1 = 1;
-        this.disabled = true;
-        this.style.cursor ='not-allowed'
-    }
-    sel.value=num1
-}
 
 //切换菜单
 $('.hd li').click(function(){

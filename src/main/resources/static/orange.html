@@ -24,7 +24,7 @@
         <div class="headr-nav">
             <ul>
                 <li><a href="index.html"><span>首页</span></a> </li>
-                <li><a href="hot.html">蔬果热卖</a> </li>
+                <li><a href="hot.html">赠品库</a> </li>
                 <li><a href="produ.html">全部产品</a> </li>
                 <li><a href="consult.html">最新资讯</a></li>
                 <li><a href="touch.html">联系我们</a> </li>
@@ -36,11 +36,6 @@
         </div>
         <div class="headr-right">
             <i class="iconfont" style="font-size: 16px;margin-right: 10px">&#xe7d5;</i>
-            我的购物车 ∨
-            <div class="hr-car">
-                <i class="iconfont"style="font-size: 40px;margin-right: 10px">&#xe633;</i>
-                您的购物车内暂时没有任何产品。
-            </div>
         </div>
     </div>
 </div>
@@ -55,7 +50,7 @@
     <div class="cont-top">
         <div class="cont-left">
             <div class="ctl-img">
-                <img src="images/org.jpg">
+                <img src="images/2.jpg">
             </div>
             <div class="collect">
                 <div class="coll">
@@ -65,9 +60,7 @@
                 <div class="coll">
                     <i class="iconfont">&#xe617;</i>
                     分享
-                    <div class="share">
-
-                    </div>
+                    <div class="share"></div>
                 </div>
             </div>
             <div class="next">
@@ -78,8 +71,6 @@
                     下一个
                 </div>
             </div>
-
-
         </div>
         <div class="cont-right">
             <div class="J_productTitle title g_minor">
@@ -242,12 +233,137 @@
         $.get("querry/"+id, function(r){
             console.log(r.map.productInfo);
             if (r.code == 100) {
+                var ProductInfo = '<div class="cont-left"><div class="ctl-img"><img src="images/'+r.map.productInfo.productId+'.jpg"></div><div class="collect">\n' +
+                    '                <div class="coll">\n' +
+                    '                    <i class="iconfont">&#xe641;</i>\n' +
+                    '                    收藏\n' +
+                    '                </div>\n' +
+                    '                <div class="coll">\n' +
+                    '                    <i class="iconfont">&#xe617;</i>\n' +
+                    '                    分享\n' +
+                    '                    <div class="share"></div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '            <div class="next">\n' +
+                    '                <div class="nt prov">\n' +
+                    '                    上一个\n' +
+                    '                </div>\n' +
+                    '                <div class="nt ntp">\n' +
+                    '                    下一个\n' +
+                    '                </div>\n' +
+                    '            </div>' +
+                    '</div>' +
+                    '<div class="cont-right">\n' +
+                    '            <div class="J_productTitle title g_minor">\n' +
+                    '                <span>'+r.map.productInfo.productDescription+'</span>\n' +
+                    '                <span id="productQrCode" class="webSiteQrCode">&nbsp;\n' +
+                    '                <div class="code">\n' +
+                    '                    <img src="images/qrCode%20(1).gif">\n' +
+                    '                    <p>扫描二微码</p>\n' +
+                    '                </div>\n' +
+                    '                </span>\n' +
+                    '            </div>\n' +
+                    '           <div class="pic">\n' +
+                    '               <span class="ppi">价格:</span>\n' +
+                    '               <span class="f-mallUnit">￥</span>\n' +
+                    '               <span class="pcc">'+r.map.productInfo.productPrice+'</span>\n' +
+                    '           </div>\n' +
+                    '            <div class="pict">\n' +
+                    '                <div class="f-proSatifySumWrap">\n' +
+                    '                    <div class="f-satifyDetail">\n' +
+                    '                        <span class="g_minor  salesVolume">评论：</span><span class="J_commNum">1</span>条\n' +
+                    '                    </div>\n' +
+                    '                    <div class="J_pdDetailBorder f-pdDetailBorder"></div>\n' +
+                    '                    <div class="f-satifyDetail">\n' +
+                    '                        <span class="g_minor  salesVolume">收藏：</span>1\n' +
+                    '                    </div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '            <div class="fk-pd5MallCartCount">\n' +
+                    '                <div class="f-cartbuyCountWrap">\n' +
+                    '                    <span class="f-propName g_minor" style="width:75px;min-width:75px;max-width: 75px;">购买数量：</span>\n' +
+                    '                    <input type="text" id="number" value="1" class="g_itext cartBuyCount f-cartBuyCount">\n' +
+                    '                </div>\n' +
+                    '                <div class="f-buyCountBtn">\n' +
+                    '                    <div  class="f-countBtn mallJian"></div>\n' +
+                    '                    <div  class="f-countBtn disableMallJian"></div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '            <div class="fk-pd5MallActBtns">\n' +
+                    '                <div class="buttn joincar">\n' +
+                    '                    加入购物车\n' +
+                    '                </div>\n' +
+                    '                <div class="buttn butto">\n' +
+                    '                    立即购买\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '        </div>'
                 console.log(r.map.productInfo);
+                document.cookie="productId="+r.map.productInfo.productId;
+                document.cookie="productPrice="+r.map.productInfo.productPrice;
+                document.cookie="productName="+r.map.productInfo.productName;
+                ele.append(ProductInfo);
             } else {
 
             }
         });
     }
+
+
+
+    var ainp =document.getElementsByClassName('f-countBtn');
+    $(document).on("click", ".mallJian", function () {
+        var num1=parseInt(document.getElementById('number').value)
+        num1= num1 + 1
+        console.log(num1);
+        ainp[1].disabled =false;
+        ainp[1].style.cursor = 'auto';
+        document.getElementById('number').value=num1;
+        console.log(document.getElementById('number').value);
+    });
+    $(document).on("click", ".disableMallJian", function () {
+        var num1=parseInt(document.getElementById('number').value)
+        num1= num1 - 1
+        if(num1 < 1){
+            num1 = 1;
+            this.disabled = true;
+            this.style.cursor ='not-allowed'
+        }
+        document.getElementById('number').value=num1
+    });
+
+    $(document).on("click", ".joincar", function () {
+        var productId=document.cookie.split(";")[0].split("=")[1];
+        var productPrice = document.cookie.split(";")[1].split("=")[1];
+        var counts = parseInt(document.getElementById('number').value);
+        var productName = document.cookie.split(";")[2].split("=")[1];
+        console.log(productId,productPrice,counts);
+        $.ajax({
+            url: '/shoppingcar/save',
+            type: 'post',
+            dataType: "json",
+            data: "productId=" + productId + "&productPrice=" + productPrice+"&counts="+counts+"&productName="+productName,
+            success: function (data) {
+                if (data.code == '100') {
+                    alert(data.msg);
+                    window.location.href = "index.html";
+                } else {
+                    alert("注册失败");
+                }
+            }
+        });
+    });
+
+    $(document).on("click", ".prov", function () {
+        var id = parseInt(window.location.href.split("=")[1])-1;
+        window.location.href='orange.html?data='+id;
+    });
+
+    $(document).on("click", ".ntp", function () {
+        var id = parseInt(window.location.href.split("=")[1])+1;
+        window.location.href='orange.html?data='+id;
+    });
+
 </script>
 
 <!--弹框-->
