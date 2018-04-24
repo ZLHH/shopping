@@ -45,12 +45,14 @@ public class ShoppingCarController {
     public Msg showProduct(HttpSession session){
         UserMain userMain=(UserMain) session.getAttribute("userMain");
         List<ShoppingCar> list = new ArrayList<ShoppingCar>();
-        list=shoppingCarService.querryAll(userMain.getId());
-        if(!list.isEmpty()&&list.size()!=0){
-            for (ShoppingCar car:list){
-                car.setSrc("images/rc-"+car.getProductId()+".jpg");
+        if (userMain!=null){
+            list=shoppingCarService.querryAll(userMain.getId());
+            if(!list.isEmpty()&&list.size()!=0){
+                for (ShoppingCar car:list){
+                    car.setSrc("images/rc-"+car.getProductId()+".jpg");
+                }
+                return Msg.success("").add("shopcartdatas", list);
             }
-            return Msg.success("").add("shopcartdatas", list);
         }
         return Msg.error("");
     }

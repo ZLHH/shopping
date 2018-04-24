@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>果然新鲜</title>
+    <link href="css/orange.css"rel="stylesheet">
+    <link href="css/tanchuang.css"rel="stylesheet">
+    <link href="css/common.css"rel="stylesheet">
+    <link href="css/share.css"rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery-1.12.3.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <link rel="stylesheet" href="js/layui/css/layui.css" />
+    <link rel="stylesheet" href="js/eleme-ui/index.css" />
+    <link rel="stylesheet" href="css/ShoppingCart.css" />
+</head>
+<body>
+<div class="right">
+    <span class="left">&nbsp;</span>
+    <div id="loginbox">
+    </div>
+</div>
+<!--顶部导航-->
+<div class="headr">
+    <div class="heard-con">
+        <img src="images/logo.jpg" style="margin-top: 7px;float: left;position: absolute">
+        <div class="headr-nav">
+            <ul>
+                <li><a href="index.html">首页</a> </li>
+                <li><a href="hot.html">赠品库</a> </li>
+                <li><a href="produ.html">全部产品</a> </li>
+                <li><a href="consult.html">最新资讯</a></li>
+                <li><a href="touch.html">联系我们</a> </li>
+            </ul>
+            <div class="sptopfoot">
+                <div class="spbottom"  >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--顶部导航结束-->
+<!--banner图片-->
+<div class="her-banner">
+
+</div>
+<!--banner图片结束-->
+<!--主页内容-->
+<div class="uright">
+    <div class="uhead">订单支付</div>
+    <div class="ui_mainBox">
+        <div class="ui_bankBox">
+            <form action="deposit/payOrder" method="post">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th valign="top">&nbsp;&nbsp;&nbsp;联系人：</th>
+                        <td>
+                            <input name="txtPay" type="text" id="buyerName" class="txt" placeholder="联系人" style="width: 144px;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="top">&nbsp;&nbsp;&nbsp;联系电话：</th>
+                        <td>
+                            <input name="txtPay" type="text" id="buyerPhone" class="txt" placeholder="联系电话" style="width: 144px;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="top">&nbsp;&nbsp;&nbsp;送货地址：</th>
+                        <td>
+                            <input name="txtPay" type="text" id="buyerAdress" class="txt" placeholder="送货地址" style="width: 144px;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="top">&nbsp;&nbsp;&nbsp;订单金额：</th>
+                        <td>
+                            <input name="txtPay" type="text" id="txtPay" class="txt" placeholder="50-500" style="width: 144px;"/>
+                            <span class="tit">
+                                <a href='/Online.aspx' class='alink15' target='_blank'>银行汇款购买 >></a>
+                            </span>
+                            <div class="clear10">&nbsp;</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="top">支付方式：</th>
+                        <td>
+                            <div class="pay-con">
+                                <ul class="bank">
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="ICBC-NET-B2C" checked/>
+                                            <img src="images/gongshang.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="CMBCHINA-NET-B2C"/>
+                                            <img src="images/zhaohang.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="ABC-NET-B2C"/>
+                                            <img src="images/nongye.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="CCB-NET-B2C">
+                                            <img src="images/jianshe.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="BCCB-NET-B2C"/>
+                                            <img src="images/beijing.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="BOCO-NET-B2C"/>
+                                            <img src="images/jiaotong.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="CIB-NET"/>
+                                            <img src="images/xingye.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="CMBC-NET"/>
+                                            <img src="images/minsheng.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="CEB-NET"/>
+                                            <img src="images/guangda.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="BOC-NET"/>
+                                            <img src="images/zhongguo.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="PINGANBANK-NET">
+                                            <img src="images/pingan.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="ECITIC-NET-B2C">
+                                            <img src="images/zhongxin.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="SDB-NET-B2C"/>
+                                            <img src="images/shenfa.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="GDB-NET-B2C"/>
+                                            <img src="images/guangfa.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="SHB-NET-B2C"/>
+                                            <img src="images/shanghaibank.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="SPDB-NET-B2C"/>
+                                            <img src="images/shangpufa.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="POST-NET-B2C"/>
+                                            <img src="images/youzheng.gif" border="0"/>
+                                    </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="BJRCB-NET-B2C"/>
+                                            <img src="images/nongcunshangye.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="HXB-NET-B2C"/>
+                                            <img src="images/huaxia.gif" border="0"/>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="pd_FrpIds" value="ZFB"/>
+                                            <img disabled="disabled" alt="" src="images/zfb.jpg">
+                                        </label>
+                                    </li>
+                                </ul>
+                                <div class="clear"></div>
+                                <p class="pay-tj">
+                                    <input type="submit" name="imgYeePay" value="确认付款" id="imgYeePay" class="butn"/>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <div class="ui_editTit">账户信息</div>
+
+            <div class="lsthead">
+                <div class="ch1 type">账号类型</div>
+                <div class="ch2 balance">帐户余额</div>
+
+            </div>
+            <div id="amountInfo">
+
+            </div>
+
+            <div class="ui_editTit">充值记录</div>
+
+
+            <div class="lsthead11">
+                <div class="ch12">发生时间</div>
+                <div class="ch13">发生金额</div>
+                <div class="ch15">账号类型</div>
+                <div class="ch16">详细说明</div>
+            </div>
+            <div id="deposit_record">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--主页内容结束-->
+<!--底部-->
+<div class="footer">
+    <div class="ft-con">
+        <div class="ft-top">
+            <img src="images/fot-1.jpg">
+        </div>
+        <div class="ft-bo">
+            <div class="ft-b">
+                <h3>服务保障</h3>
+                <p>正品保证</p>
+                <p>7天无理由退换</p>
+                <p>退货返运费</p>
+                <p>7X15小时客户服务</p>
+
+            </div>
+            <div class="ft-b">
+                <h3>支付方式</h3>
+                <p>公司转账</p>
+                <p>货到付款</p>
+                <p>在线支付</p>
+                <p>分期付款</p>
+
+            </div>
+            <div class="ft-b">
+                <h3>商家服务</h3>
+                <p>商家入驻</p>
+                <p>培训中心</p>
+                <p>广告服务</p>
+                <p>服务市场</p>
+
+            </div>
+            <div class="ft-b">
+                <h3>服务保障</h3>
+                <p>免运费</p>
+                <p>海外配送</p>
+                <p>EMS</p>
+                <p>211限时达</p>
+
+            </div>
+
+        </div>
+        <div class="banq">
+            <p>©2016 果然新鲜 版权所有</p>
+            <p>手机版 | 本站使用<span><img src="images/ft.jpg"></span>建站搭建 | 管理登录</p>
+        </div>
+
+    </div>
+
+</div>
+<!--底部结束-->
+<script src="js/banner.js"></script>
+<script type="text/javascript" src="js/vue/vue.min.js" ></script>
+<script type="text/javascript" src="js/eleme-ui/index.js" ></script>
+<script type="text/javascript" src="js/ShoppingCart.js" ></script>
+</body>
+</html>
