@@ -13,6 +13,123 @@
     <link rel="stylesheet" href="js/layui/css/layui.css" />
     <link rel="stylesheet" href="js/eleme-ui/index.css" />
     <link rel="stylesheet" href="css/ShoppingCart.css" />
+    <link rel="stylesheet" type="text/css" href="css/css.css" />
+    <!--<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>-->
+    <script type="text/javascript">
+        $(function() {
+            var region = $("#region");
+            var address = $("#address");
+            var number_this = $("#number_this");
+            var name = $("#name_");
+            var phone = $("#phone");
+            $("#sub_setID").click(function() {
+                var input_out = $(".input_style");
+                for (var i = 0; i <= input_out.length; i++) {
+                    if ($(input_out[i]).val() == "") {
+                        $(input_out[i]).css("border", "1px solid red");
+
+                        return false;
+                    } else {
+                        $(input_out[i]).css("border", "1px solid #cccccc");
+                    }
+                }
+            });
+            var span_momey = $(".span_momey");
+            var b = 0;
+            for (var i = 0; i < span_momey.length; i++) {
+                b += parseFloat($(span_momey[i]).html());
+            }
+            var out_momey = $(".out_momey");
+            out_momey.html(b);
+            $(".shade_content").hide();
+            $(".shade").hide();
+            $('.nav_mini ul li').hover(function() {
+                $(this).find('.two_nav').show(100);
+            }, function() {
+                $(this).find('.two_nav').hide(100);
+            })
+            $('.left_nav').hover(function() {
+                $(this).find('.nav_mini').show(100);
+            }, function() {
+                $(this).find('.nav_mini').hide(100);
+            })
+            $('#jia').click(function() {
+                $('input[name=num]').val(parseInt($('input[name=num]').val()) + 1);
+            })
+            $('#jian').click(function() {
+                $('input[name=num]').val(parseInt($('input[name=num]').val()) - 1);
+            })
+            $('.Caddress .add_mi').click(function() {
+                $(this).css('background', 'url("images/mail_1.jpg") no-repeat').siblings('.add_mi').css('background', 'url("images/mail.jpg") no-repeat')
+            })
+        })
+        var x = Array();
+
+        function func(a, b) {
+            x[b] = a.html();
+            alert(x)
+            a.css('border', '2px solid #f00').siblings('.min_mx').css('border', '2px solid #ccc');
+        }
+
+        function onclick_close() {
+            var shade_content = $(".shade_content");
+            var shade = $(".shade");
+            if (confirm("确认关闭么！此操作不可恢复")) {
+                shade_content.hide();
+                shade.hide();
+            }
+        }
+
+        function onclick_open() {
+            $(".shade_content").show();
+            $(".shade").show();
+            var input_out = $(".input_style");
+            for (var i = 0; i <= input_out.length; i++) {
+                if ($(input_out[i]).val() != "") {
+                    $(input_out[i]).val("");
+                }
+            }
+        }
+
+        function onclick_remove(r) {
+            if (confirm("确认删除么！此操作不可恢复")) {
+                var out_momey = $(".out_momey");
+                var input_val = $(r).parent().prev().children().eq(1).val();
+                var span_html = $(r).parent().prev().prev().children().html();
+                var out_add = parseFloat(input_val).toFixed(2) * parseFloat(span_html).toFixed(2);
+                var reduce = parseFloat(out_momey.html()).toFixed(2)- parseFloat(out_add).toFixed(2);
+                console.log(parseFloat(reduce).toFixed(2));
+                out_momey.text(parseFloat(reduce).toFixed(2))
+                $(r).parent().parent().remove();
+            }
+        }
+
+        function onclick_btnAdd(a) {
+            var out_momey = $(".out_momey");
+            var input_ = $(a).prev();
+            var input_val = $(a).prev().val();
+            var input_add = parseInt(input_val) + 1;
+            input_.val(input_add);
+            var btn_momey = parseFloat($(a).parent().prev().children().html());
+            var out_momey_float = parseFloat(out_momey.html()) + btn_momey;
+            out_momey.text(out_momey_float.toFixed(2));
+        }
+
+        function onclick_reduce(b) {
+            var out_momey = $(".out_momey");
+            var input_ = $(b).next();
+            var input_val = $(b).next().val();
+            if (input_val <= 1) {
+                alert("商品个数不能小于1！")
+            } else {
+                var input_add = parseInt(input_val) - 1;
+                input_.val(input_add);
+                var btn_momey = parseFloat($(b).parent().prev().children().html());
+                var out_momey_float = parseFloat(out_momey.html()) - btn_momey;
+                out_momey.text(out_momey_float.toFixed(2));
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="right">
@@ -45,41 +162,139 @@
 
 </div>
 <!--banner图片结束-->
+<div class="Caddress">
+    <div class="add_mi">
+        <p style="border-bottom:1px dashed #ccc;line-height:28px;">浙江杭州(爸爸收)</p>
+        <p>萧山 北干 明怡花苑53幢3单元 13735683918</p>
+    </div>
+    <div class="add_mi">
+        <p style="border-bottom:1px dashed #ccc;line-height:28px;">浙江杭州(爸爸收)</p>
+        <p>萧山 北干 明怡花苑53幢3单元 13735683918</p>
+    </div>
+    <div class="add_mi">
+        <p style="border-bottom:1px dashed #ccc;line-height:28px;">浙江杭州(爸爸收)</p>
+        <p>萧山 北干 明怡花苑53幢3单元 13735683918</p>
+    </div>
+    <div class="add_mi">
+        <p style="border-bottom:1px dashed #ccc;line-height:28px;">浙江杭州(爸爸收)</p>
+        <p>萧山 北干 明怡花苑53幢3单元 13735683918</p>
+    </div>
+    <div class="add_mi">
+        <p style="border-bottom:1px dashed #ccc;line-height:28px;">浙江杭州(爸爸收)</p>
+        <p>萧山 北干 明怡花苑53幢3单元 13735683918</p>
+    </div>
+    <div class="add">
+        <div  onclick="javascript:onclick_open();">
+            <img src="images/69-Plus.png" />
+        </div>
+    </div>
+</div>
+
+<!--
+    作者：z@163.com
+    时间：2016-03-01
+    描述：shade 遮罩层
+-->
+<div class="shade">
+</div>
+<!--
+    作者：z@163.com
+    时间：2016-03-02
+    描述：shade_content
+-->
+<div class="shade_content">
+    <div class="col-xs-12 shade_colse">
+        <button onclick="javascript:onclick_close();">x</button>
+    </div>
+    <div class="nav shade_content_div">
+        <div class="col-xs-12 shade_title">
+            新增收货地址
+        </div>
+        <div class="col-xs-12 shade_from">
+            <form action="" method="post">
+                <div class="col-xs-12">
+                    <span class="span_style" id="">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区</span>
+                    <input class="input_style" type="" name="" id="region" value="" placeholder="&nbsp;&nbsp;请输入您的所在地区" />
+                </div>
+                <div class="col-xs-12">
+                    <span class="span_style" id="">详细地址</span>
+                    <input class="input_style" type="" name="" id="address" value="" placeholder="&nbsp;&nbsp;请输入您的详细地址" />
+                </div>
+                <div class="col-xs-12">
+                    <span class="span_style" id="">邮政编号</span>
+                    <input class="input_style" type="" name="" id="number_this" value="" placeholder="&nbsp;&nbsp;请输入您的邮政编号" />
+                </div>
+                <div class="col-xs-12">
+                    <span class="span_style" class="span_sty" id="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
+                    <input class="input_style" type="" name="" id="name_" value="" placeholder="&nbsp;&nbsp;请输入您的姓名" />
+                </div>
+                <div class="col-xs-12">
+                    <span class="span_style" id="">手机号码</span>
+                    <input class="input_style" type="" name="" id="phone" value="" placeholder="&nbsp;&nbsp;请输入您的手机号码" />
+                </div>
+                <div class="col-xs-12">
+                    <input class="btn_remove" type="button" id="" onclick="javascript:onclick_close();" value="取消" />
+                    <input type="submit" class="sub_set" id="sub_setID" value="提交" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row " id="myVue" v-cloak>
+    <div class="col-lg-10 col-lg-offset-1" >
+        <div class="layui-form">
+            <table class="ShopCartTable layui-table">
+                <thead>
+                <tr>
+                    <th class="selectLeft">
+                        <template>
+                            <el-checkbox  @change="checkedAllBtn(checkedAll)" v-model="checkedAll">全选</el-checkbox>
+                        </template>
+                        <span class="selectLeftGoods">商品</span>
+                    </th>
+                    <th>单价</th>
+                    <th>数量</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(tabledatas,index) in shopTableDatas">
+                    <td  class="selectLeft">
+                        <template>
+                            <el-checkbox @change="checkedRadioBtn(tabledatas)" v-model="tabledatas.checked"></el-checkbox>
+                        </template>
+                        <span class="goodName">
+								<img class="goodImg" :src="tabledatas.src" />
+							</span>
+                        <span class="goodName goodsName">
+								<h2 class="goodname" v-text="tabledatas.productName"></h2>
+                        </span>
+                    </td>
+                    <td class="danPrice">{{tabledatas.productPrice | moneyFiler}}</td>
+                    <td>
+                        <i @click="goodNum(tabledatas,-1)" class="fa  deleteBtn" aria-hidden="true">-</i>
+                        <input v-model="tabledatas.counts" type="text" class="form-control numInput" aria-label="...">
+                        <i @click="goodNum(tabledatas,1)" class="fa  addBtn" aria-hidden="true">+</i>
+                    </td>
+                    <td>
+                        <p class="totalPrice">{{tabledatas.productPrice*tabledatas.counts | moneyFiler}}</p>
+                    </td>
+                    <td class="gongneng">
+                        <p class="deletegoods" @click="alertRadio(tabledatas.id)">删除</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 <!--主页内容-->
 <div class="uright">
     <div class="uhead">订单支付</div>
     <div class="ui_mainBox">
         <div class="ui_bankBox">
-            <form action="deposit/payOrder" method="post">
+            <form>
                 <table cellpadding="0" cellspacing="0">
-                    <tr>
-                        <th valign="top">&nbsp;&nbsp;&nbsp;联系人：</th>
-                        <td>
-                            <input name="txtPay" type="text" id="buyerName" class="txt" placeholder="联系人" style="width: 144px;"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th valign="top">&nbsp;&nbsp;&nbsp;联系电话：</th>
-                        <td>
-                            <input name="txtPay" type="text" id="buyerPhone" class="txt" placeholder="联系电话" style="width: 144px;"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th valign="top">&nbsp;&nbsp;&nbsp;送货地址：</th>
-                        <td>
-                            <input name="txtPay" type="text" id="buyerAdress" class="txt" placeholder="送货地址" style="width: 144px;"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th valign="top">&nbsp;&nbsp;&nbsp;订单金额：</th>
-                        <td>
-                            <input name="txtPay" type="text" id="txtPay" class="txt" placeholder="50-500" style="width: 144px;"/>
-                            <span class="tit">
-                                <a href='/Online.aspx' class='alink15' target='_blank'>银行汇款购买 >></a>
-                            </span>
-                            <div class="clear10">&nbsp;</div>
-                        </td>
-                    </tr>
                     <tr>
                         <th valign="top">支付方式：</th>
                         <td>
@@ -215,30 +430,6 @@
                     </tr>
                 </table>
             </form>
-            <div class="ui_editTit">账户信息</div>
-
-            <div class="lsthead">
-                <div class="ch1 type">账号类型</div>
-                <div class="ch2 balance">帐户余额</div>
-
-            </div>
-            <div id="amountInfo">
-
-            </div>
-
-            <div class="ui_editTit">充值记录</div>
-
-
-            <div class="lsthead11">
-                <div class="ch12">发生时间</div>
-                <div class="ch13">发生金额</div>
-                <div class="ch15">账号类型</div>
-                <div class="ch16">详细说明</div>
-            </div>
-            <div id="deposit_record">
-
-            </div>
-
         </div>
     </div>
 </div>

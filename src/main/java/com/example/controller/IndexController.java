@@ -39,7 +39,6 @@ public class IndexController {
         }
         return Msg.error("");
     }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Msg getProductById(@PathVariable Integer id) {
         ProductInfo productInfo=indexService.getProductById(id);
