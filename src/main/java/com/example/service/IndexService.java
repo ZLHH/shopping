@@ -19,7 +19,7 @@ public class IndexService {
         return indexDAO.querryAll();
     }
 
-    public ProductInfo getProductById(Integer id){
+    public ProductInfo getProductById(String id){
         return indexDAO.getProductById(id);
     }
 }

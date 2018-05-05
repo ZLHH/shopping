@@ -10,6 +10,7 @@
     <result column="product_stock"  property="ProductStock" />
     <result column="product_description"   property="ProductDescription" />
     <result column="category_type"  property="CategoryType" />
+    <result column="product_icon"  property="ProductIcon" />
   </resultMap>
 
 

@@ -17,6 +17,8 @@ public class ProductInfo {
 
     private String ProductDescription;
 
+    private String ProductIcon;
+
     private Integer CategoryType;
 
     public Integer getProductId() {
@@ -65,6 +67,14 @@ public class ProductInfo {
 
     public void setCategoryType(Integer categoryType) {
         CategoryType = categoryType;
+    }
+
+    public String getProductIcon() {
+        return ProductIcon;
+    }
+
+    public void setProductIcon(String productIcon) {
+        ProductIcon = productIcon;
     }
 
     @Override

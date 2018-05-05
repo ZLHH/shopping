@@ -78,7 +78,7 @@ function showOrders(ele, data) {
                 var num=0;
                 $(list).each(function (index, data) {
                     console.log(data);
-                    var ProductInfo = '<div class="rcr"><div class="rcr-top"><img src="images/rc-'+data.productId+'.jpg" width="100%"></div><div class="rcr-bot"><div class="rb-top">' + data.productName + '</div><div class="second_P"><span class="fk-prop">￥</span><span class="fk-prop-price">' + data.productPrice + '</span> ' +
+                    var ProductInfo = '<div class="rcr"><div class="rcr-top"><img src="images/rc-'+data.productIcon+'" width="100%"></div><div class="rcr-bot"><div class="rb-top">' + data.productName + '</div><div class="second_P"><span class="fk-prop">￥</span><span class="fk-prop-price">' + data.productPrice + '</span> ' +
                         '<span class="second_Marketprice">￥0.00</span></div><div class="buy"><a class="second_mallBuy" href="orange.html?data='+data.productId+'"><span style="color: white;">购买</span></a></div></div></div>';
                     $(ele).append(ProductInfo);
                 });

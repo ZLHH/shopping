@@ -234,7 +234,7 @@
         $.get("querry/"+id, function(r){
             console.log(r.map.productInfo);
             if (r.code == 100) {
-                var ProductInfo = '<div class="cont-left"><div class="ctl-img"><img src="images/'+r.map.productInfo.productId+'.jpg"></div><div class="collect">\n' +
+                var ProductInfo = '<div class="cont-left"><div class="ctl-img"><img src="images/'+r.map.productInfo.productIcon+'"></div><div class="collect">\n' +
                     '                <div class="coll">\n' +
                     '                    <i class="iconfont">&#xe641;</i>\n' +
                     '                    收藏\n' +
@@ -334,10 +334,10 @@
     });
 
     $(document).on("click", ".joincar", function () {
-        var productId=document.cookie.split(";")[0].split("=")[1];
-        var productPrice = document.cookie.split(";")[1].split("=")[1];
+        var productId=getCookie("productId");
+        var productPrice = getCookie("productPrice");
         var counts = parseInt(document.getElementById('number').value);
-        var productName = document.cookie.split(";")[2].split("=")[1];
+        var productName = getCookie("productName");
         console.log(productId,productPrice,counts);
         $.ajax({
             url: '/shoppingcar/save',
@@ -349,7 +349,7 @@
                     alert(data.msg);
                     window.location.href = "index.html";
                 } else {
-                    alert("注册失败");
+                    alert("加入失败");
                 }
             }
         });
@@ -364,6 +364,23 @@
         var id = parseInt(window.location.href.split("=")[1])+1;
         window.location.href='orange.html?data='+id;
     });
+
+    function getCookie(cookie_name) {
+        var allcookies = document.cookie;
+        var cookie_pos = allcookies.indexOf(cookie_name);   //索引的长度
+        // 如果找到了索引，就代表cookie存在，
+        // 反之，就说明不存在。
+        if (cookie_pos != -1) {
+            // 把cookie_pos放在值的开始，只要给值加1即可。
+            cookie_pos += cookie_name.length + 1;      //这里容易出问题，所以请大家参考的时候自己好好研究一下
+            var cookie_end = allcookies.indexOf(";", cookie_pos);
+            if (cookie_end == -1) {
+                cookie_end = allcookies.length;
+            }
+            var value = unescape(allcookies.substring(cookie_pos, cookie_end));         //这里就可以得到你想要的cookie的值了。。。
+        }
+        return value;
+    }
 
 </script>
 
