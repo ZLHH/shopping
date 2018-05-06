@@ -14,8 +14,35 @@
     <link rel="stylesheet" href="js/eleme-ui/index.css" />
     <link rel="stylesheet" href="css/ShoppingCart.css" />
     <link rel="stylesheet" type="text/css" href="css/css.css" />
-    <!--<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>-->
     <script type="text/javascript">
+        $(function() {
+            var ele = $(".Caddress");
+            $(ele).empty();
+            $.ajax({
+                url: '/order/adresslist',
+                type: 'GET',
+                success: function (data) {
+                    if (data.code == 100) {
+                        var list = data.map.pageInfo.list;
+                        console.log(list);
+                        var num=0;
+                        $(list).each(function (index, data) {
+                            console.log(data);
+                            var ProductInfo = '<div class="add_mi"><p style="border-bottom:1px dashed #ccc;line-height:28px;">'+data.name+'</p><p style="border-bottom:1px dashed #ccc;line-height:28px;">'+data.adress+'</p><p>'+data.phone+'</p></div>';
+                            $(ele).append(ProductInfo);
+                        });
+                        var plusAdress = '<div class="add">\n' +
+                            '        <div  onclick="javascript:onclick_open();">\n' +
+                            '            <img src="images/69-Plus.png" />\n' +
+                            '        </div>\n' +
+                            '    </div>'
+                        $(ele).append(plusAdress);
+                    }else {
+                        alert(data.msg);
+                    }
+                }
+            });
+        })
         $(function() {
             var region = $("#region");
             var address = $("#address");
@@ -103,6 +130,30 @@
                 $(r).parent().parent().remove();
             }
         }
+
+        /*添加地址*/
+        function saveAdress(){
+            var name = $("#name").val();
+            var phone = $("#phone").val();
+            var adress = $("#adress").val();
+            console.log(name,phone,adress);
+            $.ajax({
+                url: '/order/saveAdress',
+                type: 'POST',
+                data: "name=" + name + "&phone=" + phone+"&adress="+adress,
+                success: function (data) {
+                    console.log(data)
+                    if (data.code == '100') {
+                        alert(data.msg);
+                        window.location.href='../pay.html';
+                    } else {
+                        alert(data.msg);;
+                    }
+                }
+            });
+        }
+
+
 
         function onclick_btnAdd(a) {
             var out_momey = $(".out_momey");
@@ -211,30 +262,23 @@
             新增收货地址
         </div>
         <div class="col-xs-12 shade_from">
-            <form action="" method="post">
+            <form>
+
                 <div class="col-xs-12">
-                    <span class="span_style" id="">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区</span>
-                    <input class="input_style" type="" name="" id="region" value="" placeholder="&nbsp;&nbsp;请输入您的所在地区" />
+                    <span class="span_style" class="span_sty">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
+                    <input class="input_style" type="" name="" id="name" value="" placeholder="&nbsp;&nbsp;请输入您的姓名" />
                 </div>
                 <div class="col-xs-12">
-                    <span class="span_style" id="">详细地址</span>
-                    <input class="input_style" type="" name="" id="address" value="" placeholder="&nbsp;&nbsp;请输入您的详细地址" />
-                </div>
-                <div class="col-xs-12">
-                    <span class="span_style" id="">邮政编号</span>
-                    <input class="input_style" type="" name="" id="number_this" value="" placeholder="&nbsp;&nbsp;请输入您的邮政编号" />
-                </div>
-                <div class="col-xs-12">
-                    <span class="span_style" class="span_sty" id="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
-                    <input class="input_style" type="" name="" id="name_" value="" placeholder="&nbsp;&nbsp;请输入您的姓名" />
-                </div>
-                <div class="col-xs-12">
-                    <span class="span_style" id="">手机号码</span>
+                    <span class="span_style">手机号码</span>
                     <input class="input_style" type="" name="" id="phone" value="" placeholder="&nbsp;&nbsp;请输入您的手机号码" />
                 </div>
                 <div class="col-xs-12">
+                    <span class="span_style">详细地址</span>
+                    <input class="input_style" type="" name="" id="adress" value="" placeholder="&nbsp;&nbsp;请输入您的详细地址" />
+                </div>
+                <div class="col-xs-12">
                     <input class="btn_remove" type="button" id="" onclick="javascript:onclick_close();" value="取消" />
-                    <input type="submit" class="sub_set" id="sub_setID" value="提交" />
+                    <input class="sub_set" id="sub_setID" onclick="javascript:saveAdress();" value="提交" />
                 </div>
             </form>
         </div>
@@ -248,9 +292,6 @@
                 <thead>
                 <tr>
                     <th class="selectLeft">
-                        <template>
-                            <el-checkbox  @change="checkedAllBtn(checkedAll)" v-model="checkedAll">全选</el-checkbox>
-                        </template>
                         <span class="selectLeftGoods">商品</span>
                     </th>
                     <th>单价</th>
@@ -260,9 +301,6 @@
                 <tbody>
                 <tr v-for="(tabledatas,index) in shopTableDatas">
                     <td  class="selectLeft">
-                        <template>
-                            <el-checkbox @change="checkedRadioBtn(tabledatas)" v-model="tabledatas.checked"></el-checkbox>
-                        </template>
                         <span class="goodName">
 								<img class="goodImg" :src="tabledatas.src" />
 							</span>
@@ -275,12 +313,6 @@
                         <i @click="goodNum(tabledatas,-1)" class="fa  deleteBtn" aria-hidden="true">-</i>
                         <input v-model="tabledatas.counts" type="text" class="form-control numInput" aria-label="...">
                         <i @click="goodNum(tabledatas,1)" class="fa  addBtn" aria-hidden="true">+</i>
-                    </td>
-                    <td>
-                        <p class="totalPrice">{{tabledatas.productPrice*tabledatas.counts | moneyFiler}}</p>
-                    </td>
-                    <td class="gongneng">
-                        <p class="deletegoods" @click="alertRadio(tabledatas.id)">删除</p>
                     </td>
                 </tr>
                 </tbody>
@@ -487,6 +519,6 @@
 <script src="js/banner.js"></script>
 <script type="text/javascript" src="js/vue/vue.min.js" ></script>
 <script type="text/javascript" src="js/eleme-ui/index.js" ></script>
-<script type="text/javascript" src="js/ShoppingCart.js" ></script>
+<script type="text/javascript" src="js/pay.js" ></script>
 </body>
 </html>

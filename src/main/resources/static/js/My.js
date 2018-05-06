@@ -98,7 +98,7 @@ function showOrders(ele, data) {
 
 function build_pageInfo_teacherRequire(ele, data) {
     $(ele).empty();
-    var pager_div = $("<div></div>").addClass("pager");
+    var pager_div = $("<div></div>").addClass("hd");
     var ul = $("<ul></ul>");
     $(ul).appendTo(pager_div)
     //首页
@@ -106,7 +106,7 @@ function build_pageInfo_teacherRequire(ele, data) {
     shouye_li.click(function () {
         to_page_teacherRequire(1,data);
     });
-    ul.append(shouye_li).addClass("banner-bottom");
+    ul.append(shouye_li).addClass("");
     //上一页
     var prePageLi = $("<li></li>").append($("<span></span>").append("&laquo;")).addClass("net");
     prePageLi.click(function () {

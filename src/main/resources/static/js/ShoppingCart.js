@@ -275,23 +275,27 @@ var vm = new Vue({
 		},
 		/*保存购买数据*/
 		saveData:function(){
+            localStorage.clear();
+            console.log("qingchu");
 			var _this = this;
 			_this.userBuyData.length = 0;
 			this.shopTableDatas.forEach(function(item,index){
 				if(item.checked == true){
-					/*var msg={
+					var msg={
 						msgdata:[
 							{
-								name:item.name,
-								num:item.num,
-								price:item.price,
+                                productId:item.productId,
+								name:item.productName,
+                                num:item.counts,
+								price:item.productPrice,
 								src:item.src,
 							},
 						]
 					};
-					var time=new Date().getTime();	
-					localStorage.setItem(time,JSON.stringify(msg));*/
-					window.location.href='../CivilMilitaryIntegration/ShoppingCartAdress.html'
+					var time=new Date().getTime();
+					localStorage.setItem(item.productId,JSON.stringify(msg));
+					console.log(JSON.stringify(msg));
+					// window.location.href='../CivilMilitaryIntegration/ShoppingCartAdress.html'
 				}
 			})	
 			

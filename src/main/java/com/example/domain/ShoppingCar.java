@@ -22,6 +22,8 @@ public class ShoppingCar {
 
     private String productName;
 
+    private Integer status;
+
     private String src;
 
     public Integer getId() {
@@ -86,5 +88,13 @@ public class ShoppingCar {
 
     public void setSrc(String src) {
         this.src = src;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

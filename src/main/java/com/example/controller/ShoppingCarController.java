@@ -35,6 +35,7 @@ public class ShoppingCarController {
         shoppingCar.setCounts(counts);
         shoppingCar.setCreateTime(LocalDateTime.now());
         shoppingCar.setProductName(productName);
+        shoppingCar.setStatus(0);
         shoppingCarService.save(shoppingCar);
         return Msg.success("加入购物车成功!");
 

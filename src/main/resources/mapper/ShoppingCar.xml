@@ -9,12 +9,13 @@
         <result column="product_price"  property="productPrice" />
         <result column="counts"  property="counts" />
         <result column="product_name"  property="productName" />
+        <result column="status"  property="status" />
     </resultMap>
     <select id="querryAll" resultMap="carInfo">
-        select * from shopping_car where user_id=#{id};
+        select * from shopping_car where user_id=#{id} AND status=0;
     </select>
 
-    <insert id="save" parameterType="com.example.domain.UserMain" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.example.domain.ShoppingCar" useGeneratedKeys="true" keyProperty="id">
         insert into shopping_car
         (
         `user_id`,
@@ -22,7 +23,8 @@
         `product_price`,
         `counts`,
         `create_time`,
-        `product_name`
+        `product_name`,
+        `status`
         )
         values
         (
@@ -31,7 +33,8 @@
         #{productPrice},
         #{counts},
         #{createTime},
-        #{productName}
+        #{productName},
+        #{status}
         )
     </insert>
 
@@ -40,7 +43,7 @@
     </delete>
 
     <select id="queryTotal" resultType="int">
-        select count(*) from shopping_car where user_id = #{id}
+        select count(*) from shopping_car where user_id = #{id} AND status=0
     </select>
 </mapper>
 

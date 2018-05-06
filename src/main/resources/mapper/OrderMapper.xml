@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.OrderDAO">
+
+    <resultMap  type="com.example.domain.Adress" id="adressInfo">
+        <id column="id"  property="id" />
+        <id column="name"  property="name" />
+        <result column="phone"  property="phone" />
+        <result column="adress"  property="adress" />
+        <result column="user_id"  property="userId" />
+    </resultMap>
+
+    <insert id="saveAdress" parameterType="com.example.domain.Adress" useGeneratedKeys="true" keyProperty="id">
+        insert into adress
+        (
+        `name`,
+        `phone`,
+        `adress`,
+        `user_id`,
+        `create_time`
+        )
+        values
+        (
+        #{name},
+        #{phone},
+        #{adress},
+        #{userId},
+        #{createTime}
+        )
+    </insert>
+
+
+    <select id="showAdress" resultMap="adressInfo">
+        select * from adress where user_id=#{userid};
+    </select>
+
+</mapper>
+
