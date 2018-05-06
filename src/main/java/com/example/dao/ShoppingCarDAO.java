@@ -11,7 +11,9 @@ import java.util.List;
  */
 @Mapper
 public interface ShoppingCarDAO {
+
     void save(ShoppingCar shoppingCar);
+
     List<ShoppingCar> querryAll(Integer id);
 
     void delete(Integer id);
