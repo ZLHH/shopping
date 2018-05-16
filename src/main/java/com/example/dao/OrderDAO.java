@@ -1,7 +1,10 @@
 package com.example.dao;
 
 import com.example.domain.Adress;
+import com.example.domain.OrderDetail;
+import com.example.domain.OrderMaster;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,4 +17,10 @@ public interface OrderDAO {
     void saveAdress(Adress adress);
 
     List<Adress> showAdress(Integer userid);
+
+    void reduce(@Param("counts")Integer counts,@Param("id") Integer id);
+
+    void saveOrderMaster(OrderMaster orderMaster);
+
+    void saveOrderDetail(OrderDetail orderDetail);
 }

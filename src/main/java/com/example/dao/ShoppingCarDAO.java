@@ -3,6 +3,7 @@ package com.example.dao;
 import com.example.domain.ShoppingCar;
 import com.example.domain.UserMain;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,4 +20,8 @@ public interface ShoppingCarDAO {
     void delete(Integer id);
 
     int queryTotal(Integer id);
+
+    ShoppingCar querryAllByIds(@Param("ids") Integer ids,@Param("id") Integer id);
+
+    void changeStatus(Integer id);
 }

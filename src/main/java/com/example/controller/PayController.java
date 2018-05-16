@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.domain.OrderMaster;
 import com.example.utils.PaymentUtil;
 import com.example.utils.UUIDUtil;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -44,7 +46,7 @@ public class PayController {
         String p5_Pid = ""; // 商品名称:
         String p6_Pcat = ""; // 商品种类:
         String p7_Pdesc = ""; // 商品描述:
-        String p8_Url = "http://localhost:8081/deposit/callBack"; // 商户接收支付成功数据的地址:
+        String p8_Url = "http://localhost:8080/pay/callBack"; // 商户接收支付成功数据的地址:
         String p9_SAF = ""; // 送货地址:
         String pa_MP = ""; // 商户扩展信息:
         String pd_FrpId = pd_FrpIds;// 支付通道编码:
@@ -76,32 +78,13 @@ public class PayController {
     }
 
     @RequestMapping("/callBack")
-    public String callBack(HttpServletRequest request) {
-//        HttpSession session = request.getSession();
-//        System.out.println("-------充值成功--------");
-//        Deposit deposit = new Deposit();
-//        deposit.setChargeDate(new Date());
-//        deposit.setChargeMoney(new BigDecimal(100));
-//        Integer organiser = (Integer) session.getAttribute("identity");
-//        deposit.setOrganiser(organiser);
-//        if (organiser == 1) {
-//            Student student = (Student) session.getAttribute("student");
-//            student.setBalance(new BigDecimal(100).add(student.getBalance() == null ? new BigDecimal(0) : student.getBalance()));
-//            studentService.updateByPrimaryKeySelective(student);
-//            deposit.setOrganiserId(student.getId());
-//            deposit.setStatus(0);
-//            depositService.insertSelective(deposit);
-//            return "redirect:/my?url=student_chongzhi";
-//        } else {
-//            Teacher teacher = (Teacher) session.getAttribute("teacher");
-//            teacher.setBalance(new BigDecimal(100).add(teacher.getBalance() == null ? new BigDecimal(0) : teacher.getBalance()));
-//            teacherService.updateByPrimaryKeySelective(teacher);
-//            deposit.setOrganiserId(teacher.getId());
-//            deposit.setStatus(0);
-//            depositService.insertSelective(deposit);
-//            return "redirect:/my?url=teacher_chongzhi";
-//        }
+    public String callBack() {
+        System.out.println("-------充值成功--------");
+        OrderMaster orderMaster = new OrderMaster();
+        orderMaster.setPayStatus(1);
+        orderMaster.setUpdateTime(LocalDateTime.now());
 
-        return null;
+        return "付款成功！！";
+
     }
 }

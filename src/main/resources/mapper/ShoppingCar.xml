@@ -15,6 +15,10 @@
         select * from shopping_car where user_id=#{id} AND status=0;
     </select>
 
+    <select id="querryAllByIds" resultMap="carInfo">
+        select * from shopping_car where product_id =#{ids} AND user_id=#{id} AND status=0
+    </select>
+
     <insert id="save" parameterType="com.example.domain.ShoppingCar" useGeneratedKeys="true" keyProperty="id">
         insert into shopping_car
         (
@@ -45,5 +49,10 @@
     <select id="queryTotal" resultType="int">
         select count(*) from shopping_car where user_id = #{id} AND status=0
     </select>
+
+    <update id="changeStatus">
+        update shopping_car set status = 1 where id = #{id}
+    </update>
+
 </mapper>
 

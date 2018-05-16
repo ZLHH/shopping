@@ -10,6 +10,57 @@
         <result column="user_id"  property="userId" />
     </resultMap>
 
+
+    <insert id="saveOrderMaster" parameterType="com.example.domain.OrderMaster" useGeneratedKeys="true" keyProperty="id">
+        insert into order_master
+        (
+        `order_id`,
+        `buyer_name`,
+        `buyer_phone`,
+        `buyer_address`,
+        `buyer_openid`,
+        `order_amount`,
+        `order_status`,
+        `pay_status`,
+        `create_time`
+        )
+        values
+        (
+        #{orderId},
+        #{buyerName},
+        #{buyerPhone},
+        #{buyerAddress},
+        #{buyerOpenid},
+        #{orderAmount},
+        #{orderStatus},
+        #{payStatus},
+        #{createTime}
+        )
+    </insert>
+
+    <insert id="saveOrderDetail" parameterType="com.example.domain.OrderDetail" useGeneratedKeys="true" keyProperty="id">
+        insert into order_detail
+        (
+        `detail_id`,
+        `order_id`,
+        `product_id`,
+        `product_name`,
+        `product_price`,
+        `product_quantity`,
+        `create_time`
+        )
+        values
+        (
+        #{detailId},
+        #{orderId},
+        #{productId},
+        #{productName},
+        #{productPrice},
+        #{productQuantity},
+        #{createTime}
+        )
+    </insert>
+
     <insert id="saveAdress" parameterType="com.example.domain.Adress" useGeneratedKeys="true" keyProperty="id">
         insert into adress
         (
@@ -33,6 +84,10 @@
     <select id="showAdress" resultMap="adressInfo">
         select * from adress where user_id=#{userid};
     </select>
+
+    <update id="reduce">
+        update product_info set product_stock = product_stock-#{counts} where product_id = #{id}
+    </update>
 
 </mapper>
 

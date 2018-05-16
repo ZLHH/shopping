@@ -32,4 +32,11 @@ public class ShoppingCarService {
         return shoppingCarDAO.queryTotal(id);
     }
 
+    public ShoppingCar querryAllByIds(Integer ids,Integer id){
+        return shoppingCarDAO.querryAllByIds(ids,id);
+    }
+
+    public void changeStatus(Integer id){
+        shoppingCarDAO.changeStatus(id);
+    }
 }

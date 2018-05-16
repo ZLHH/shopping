@@ -2,6 +2,8 @@ package com.example.service;
 
 import com.example.dao.OrderDAO;
 import com.example.domain.Adress;
+import com.example.domain.OrderDetail;
+import com.example.domain.OrderMaster;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +25,17 @@ public class OrderService {
     public List<Adress> showAdress(Integer userid){
         List<Adress> adressList=orderDAO.showAdress(userid);
         return adressList;
+    }
+
+    public void reduce(Integer counts,Integer id){
+        orderDAO.reduce(counts,id);
+    }
+
+    public void saveOrderMaster(OrderMaster orderMaster){
+        orderDAO.saveOrderMaster(orderMaster);
+    }
+
+    public void saveOrderDetail(OrderDetail orderDetail){
+        orderDAO.saveOrderDetail(orderDetail);
     }
 }

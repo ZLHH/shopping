@@ -82,4 +82,26 @@ public class ShoppingCarController {
             return null;
 
     }
+
+    @RequestMapping(value = "/listByIds")
+    @ResponseBody
+    public Msg listByIds(@RequestBody Integer[] ids,HttpSession session){
+        System.out.println(ids[0]);
+        UserMain userMain=(UserMain) session.getAttribute("userMain");
+        List<ShoppingCar> list = new ArrayList<ShoppingCar>();
+        if (userMain!=null){
+            for (int i=0;i<ids.length;i++){
+                ShoppingCar shoppingCar = shoppingCarService.querryAllByIds(ids[i],userMain.getId());
+                list.add(shoppingCar);
+            }
+
+            if(!list.isEmpty()&&list.size()!=0){
+                for (ShoppingCar car:list){
+                    car.setSrc("images/rc-"+car.getProductId()+".jpg");
+                }
+                return Msg.success("").add("shopcartdatas", list);
+            }
+        }
+        return Msg.error("");
+    }
 }

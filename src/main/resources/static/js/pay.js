@@ -139,11 +139,19 @@ var vm = new Vue({
     },
     methods: {
         getCar:function(){
+            // var ids = {};
+            var ids = new Array();
+            for(var i=0; i<localStorage.length;i++){
+                console.log('localStorage里存储的第'+i+'条数据的名字为：'+localStorage.key(i)+',值为：'+localStorage.getItem(localStorage.key(i)));
+                // ids[i] = localStorage.key(i);
+                ids.push(localStorage.key(i));
+            }
+            console.log(JSON.stringify(ids));
             $.ajax({
-                url: '/shoppingcar/list',
-                type: 'GET',
-                dataType: "json",
-                data: null,
+                type: "POST",
+                url: '/shoppingcar/listByIds',
+                contentType: "application/json",
+                data: JSON.stringify(ids),
                 success: function (data) {
                     if (data.code == '100') {
                         vm.shopTableDatas=data.map.shopcartdatas;

@@ -295,7 +295,7 @@ var vm = new Vue({
 					var time=new Date().getTime();
 					localStorage.setItem(item.productId,JSON.stringify(msg));
 					console.log(JSON.stringify(msg));
-					// window.location.href='../CivilMilitaryIntegration/ShoppingCartAdress.html'
+					window.location.href='pay.html'
 				}
 			})	
 			
