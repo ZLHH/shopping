@@ -83,80 +83,11 @@ function showOrders(ele, data) {
                     $(ele).append(ProductInfo);
                 });
                 var ele1 = $(".pages");
-                build_pageInfo_teacherRequire(ele1, data)
             } else {
                 $(".pages").empty();
             }
         }
     });
-}
-
-
-
-
-
-
-function build_pageInfo_teacherRequire(ele, data) {
-    $(ele).empty();
-    var pager_div = $("<div></div>").addClass("hd");
-    var ul = $("<ul></ul>");
-    $(ul).appendTo(pager_div)
-    //首页
-    var shouye_li = $("<li></li>").append($("<a></a>").append("首页"));
-    shouye_li.click(function () {
-        to_page_teacherRequire(1,data);
-    });
-    ul.append(shouye_li).addClass("");
-    //上一页
-    var prePageLi = $("<li></li>").append($("<span></span>").append("&laquo;")).addClass("net");
-    prePageLi.click(function () {
-        to_page_teacherRequire(data.map.pageInfo.pageNum - 1,data);
-    });
-    ul.append(prePageLi);
-    //页码
-    $.each(data.map.pageInfo.navigatepageNums, function (index, item) {
-
-        var Li = $("<li></li>").append(
-            $("<a></a>").append(item).addClass("active"));
-        if (data.map.pageInfo.pageNum == item) {
-            Li.find("a").addClass("active");
-        }
-        Li.click(function () {
-            to_page_teacherRequire(item,data);
-        });
-        ul.append(Li);
-    });
-    //下一页
-    var nextPageLi = $("<li></li>").append($("<a></a>").append("&raquo;")).addClass("next");
-    nextPageLi.click(function () {
-        to_page_teacherRequire(data.map.pageInfo.pageNum + 1,data);
-    });
-    ul.append(nextPageLi);
-
-    //末页
-    var lastPageLi = $("<li></li>").append(
-        $("<a></a>").append("末页"));
-    lastPageLi.click(function () {
-        to_page_teacherRequire(data.map.pageInfo.pages,data);
-    });
-    ul.append(lastPageLi);
-    ul.appendTo(pager_div);
-    pager_div.appendTo(ele);
-    var clear = $("<div></div>").addClass("clear");
-    clear.appendTo(ele);
-}
-
-function to_page_teacherRequire(pageNum,data) {
-    var ele = $(".rec-right");
-    if (pageNum>(data.map.pageInfo.pages)){
-        pageNum=data.map.pageInfo.pages;
-    }else if (pageNum<1){
-        pageNum=1;
-    }
-
-
-    var data =  "&pageNum=" + pageNum;
-    showOrders(ele, data);
 }
 
 

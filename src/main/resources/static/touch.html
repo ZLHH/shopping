@@ -212,6 +212,31 @@
 <!--底部结束-->
 <script src="js/banner.js"></script>
 <script>
+    $(function () {
+        var data="";
+        var category = $(".cltcon");
+        showCategory(category, data);
+    });
+    function showCategory(category, data) {
+        $(category).empty();
+        $.ajax({
+            url: 'category/list',
+            type: 'GET',
+            data: data,
+            success: function (data) {
+                if (data.code == 100) {
+                    var list = data.map.category.list;
+                    console.log(list);
+                    var num=0;
+                    $(list).each(function (index, data) {
+                        console.log(data);
+                        var ProductInfo = '<p><a href="produ.html?data='+data.categoryType+'">'+data.categoryName+'</a> </p>';
+                        $(category).append(ProductInfo);
+                    });
+                }
+            }
+        });
+    }
     function touch() {
         var name = $("#name").val();
         var phone = $("#phone").val();

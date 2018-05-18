@@ -7,10 +7,11 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * Created by zhanglh on 2018/5/6.
+ * Created by zhanglh on 2018/5/17.
  */
 @Mapper
-public interface HotDAO {
+public interface ProductDAO {
 
     List<ProductInfo> querryAll(@Param("category")Integer category);
+
 }

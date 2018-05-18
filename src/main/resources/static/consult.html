@@ -238,6 +238,123 @@
 </div>
 <!--底部结束-->
 <script src="js/banner.js"></script>
+<script>
+    $(function () {
+        var ele = $(".bd");
+        var data="";
+        var category = $(".cltcon");
+        showCategory(category, data);
+        showInformation(ele, data);
+    });
+
+    function showInformation(ele, data) {
+        $(ele).empty();
+        $.ajax({
+            url: 'information/list',
+            type: 'GET',
+            data: data,
+            success: function (data) {
+                if (data.code == 100) {
+                    var list = data.map.pageInfo.list;
+                    console.log(list);
+                    var num=0;
+                    $(list).each(function (index, data) {
+                        console.log(data);
+                        var ProductInfo = '<a href="consultdetail.html?id='+data.id+'"></div><div class="rec-cot"> <div class="rgl-cont"> <p>'+data.createTime.dayOfMonth+'</p> <span>'+data.createTime.year+'/'+data.createTime.monthValue+'</span> </div> <div class="rgr-cont"> <h3>'+data.title+'</h3> <p style="width: 700px;overflow: hidden;white-space:nowrap;text-overflow:ellipsis;">'+data.information+'</p> </div> </div></a>';
+                        $(ele).append(ProductInfo);
+                    });
+                    var ele1 = $(".pages");
+                    build_pageInfo_teacherRequire(ele1, data)
+                } else {
+                    $(".pages").empty();
+                }
+            }
+        });
+    }
+    function build_pageInfo_teacherRequire(ele, data) {
+        $(ele).empty();
+        var pager_div = $("<div></div>").addClass("pager");
+        var ul = $("<ul></ul>");
+        $(ul).appendTo(pager_div)
+        //首页
+        var shouye_li = $("<li></li>").append($("<a></a>").append("首页"));
+        shouye_li.click(function () {
+            to_page_teacherRequire(1,data);
+        });
+        ul.append(shouye_li).addClass("banner-bottom");
+        //上一页
+        var prePageLi = $("<li></li>").append($("<span></span>").append("&laquo;")).addClass("net");
+        prePageLi.click(function () {
+            to_page_teacherRequire(data.map.pageInfo.pageNum - 1,data);
+        });
+        ul.append(prePageLi);
+        //页码
+        $.each(data.map.pageInfo.navigatepageNums, function (index, item) {
+
+            var Li = $("<li></li>").append(
+                $("<a></a>").append(item).addClass("active"));
+            if (data.map.pageInfo.pageNum == item) {
+                Li.find("a").addClass("active");
+            }
+            Li.click(function () {
+                to_page_teacherRequire(item,data);
+            });
+            ul.append(Li);
+        });
+        //下一页
+        var nextPageLi = $("<li></li>").append($("<a></a>").append("&raquo;")).addClass("next");
+        nextPageLi.click(function () {
+            to_page_teacherRequire(data.map.pageInfo.pageNum + 1,data);
+        });
+        ul.append(nextPageLi);
+
+        //末页
+        var lastPageLi = $("<li></li>").append(
+            $("<a></a>").append("末页"));
+        lastPageLi.click(function () {
+            to_page_teacherRequire(data.map.pageInfo.pages,data);
+        });
+        ul.append(lastPageLi);
+        ul.appendTo(pager_div);
+        pager_div.appendTo(ele);
+        var clear = $("<div></div>").addClass("clear");
+        clear.appendTo(ele);
+    }
+
+    function to_page_teacherRequire(pageNum,data) {
+        var ele = $(".rec-right");
+        if (pageNum>(data.map.pageInfo.pages)){
+            pageNum=data.map.pageInfo.pages;
+        }else if (pageNum<1){
+            pageNum=1;
+        }
+
+
+        var data =  "&pageNum=" + pageNum;
+        showOrders(ele, data);
+    }
+
+    function showCategory(category, data) {
+        $(category).empty();
+        $.ajax({
+            url: 'category/list',
+            type: 'GET',
+            data: data,
+            success: function (data) {
+                if (data.code == 100) {
+                    var list = data.map.category.list;
+                    console.log(list);
+                    var num=0;
+                    $(list).each(function (index, data) {
+                        console.log(data);
+                        var ProductInfo = '<p><a href="produ.html?data='+data.categoryType+'">'+data.categoryName+'</a> </p>';
+                        $(category).append(ProductInfo);
+                    });
+                }
+            }
+        });
+    }
+</script>
 <!--弹框-->
 <div class="popup">
     <div class="login">
