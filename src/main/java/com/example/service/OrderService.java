@@ -7,6 +7,7 @@ import com.example.domain.OrderMaster;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -38,4 +39,8 @@ public class OrderService {
     public void saveOrderDetail(OrderDetail orderDetail){
         orderDAO.saveOrderDetail(orderDetail);
     }
+
+    public void queryOrderById(String orderId, LocalDateTime updateTime){
+        orderDAO.changeOrderStatusById(orderId,updateTime);
+     }
 }

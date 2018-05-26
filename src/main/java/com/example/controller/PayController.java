@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.domain.OrderMaster;
+import com.example.service.OrderService;
 import com.example.utils.PaymentUtil;
 import com.example.utils.UUIDUtil;
 import org.slf4j.Logger;
@@ -28,6 +29,9 @@ public class PayController {
 
     private Logger logger = LoggerFactory.getLogger(PayController.class);
 
+    @Autowired
+    OrderService orderService;
+
 
     /**
      * 支付订单
@@ -35,12 +39,13 @@ public class PayController {
      * @throws IOException
      */
     @RequestMapping("/payOrder")
-    public String payOrder(String pd_FrpIds, HttpServletResponse response) throws IOException {
+    public String payOrder(HttpSession session,String pd_FrpIds, HttpServletResponse response) throws IOException {
         // 完成付款:
         // 付款需要的参数:
         String p0_Cmd = "Buy"; // 业务类型:
         String p1_MerId = "10001126856";// 商户编号:
-        String p2_Order = UUIDUtil.getUUID();// 订单编号:
+        String p2_Order = session.getAttribute("orderId").toString();// 订单编号:
+        logger.info("orderId:{}",p2_Order);
         String p3_Amt = "0.01"; // 付款金额:
         String p4_Cur = "CNY"; // 交易币种:
         String p5_Pid = ""; // 商品名称:
@@ -78,13 +83,9 @@ public class PayController {
     }
 
     @RequestMapping("/callBack")
-    public String callBack() {
-        System.out.println("-------充值成功--------");
-        OrderMaster orderMaster = new OrderMaster();
-        orderMaster.setPayStatus(1);
-        orderMaster.setUpdateTime(LocalDateTime.now());
-
+    public String callBack(String r6_Order) {
+        logger.info("-------充值成功--------orderId:{}",r6_Order);
+        orderService.queryOrderById(r6_Order,LocalDateTime.now());
         return "付款成功！！";
-
     }
 }

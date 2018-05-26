@@ -77,6 +77,7 @@ public class OrderController {
             return Msg.error("请先登录!");
         }else {
             String orderId = KeyUtil.genUniqueKey();
+            session.setAttribute("orderId", orderId);
             OrderDetail orderDetail = new OrderDetail();
             BigDecimal orderAmount = new BigDecimal(BigInteger.ZERO);
             OrderMaster orderMaster = new OrderMaster();

@@ -42,7 +42,6 @@
                             $(this).css('background', 'url("images/mail_1.jpg") no-repeat').siblings('.add_mi').css('background', 'url("images/mail.jpg") no-repeat')
                             console.log(this.innerText);
                             sessionStorage.setItem("adress", this.innerText);
-                            alert(name);
                         })
 
                     }else {
@@ -194,9 +193,17 @@
                 alert("请点击请选择地址");
                 return false;
             }
-           var name = username.split(/[\n]/)[0];
-           var phone = username.split(/[\n]/)[4];
-           var adress = username.split(/[\n]/)[2];
+           alert(username.split(/[\n]/));
+            if (username.split(/[\n]/).length>5){
+                var name = username.split(/[\n]/)[0];
+                var phone = username.split(/[\n]/)[4];
+                var adress = username.split(/[\n]/)[2];
+            }else {
+                var name = username.split(/[\n]/)[0];
+                var phone = username.split(/[\n]/)[1];
+                var adress = username.split(/[\n]/)[2];
+            }
+
            sessionStorage.clear();
            var ids = new Array();
            for(var i=0; i<localStorage.length;i++){

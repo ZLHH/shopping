@@ -6,6 +6,7 @@ import com.example.domain.OrderMaster;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -23,4 +24,6 @@ public interface OrderDAO {
     void saveOrderMaster(OrderMaster orderMaster);
 
     void saveOrderDetail(OrderDetail orderDetail);
+
+    void   changeOrderStatusById(@Param("orderId")String orderId,@Param("updateTime")LocalDateTime updateTime);
 }

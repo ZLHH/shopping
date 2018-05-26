@@ -85,6 +85,11 @@
         select * from adress where user_id=#{userid};
     </select>
 
+
+    <update id="changeOrderStatusById">
+        update order_master set pay_status = 1,update_time=#{updateTime} where order_id = #{orderId}
+    </update>
+
     <update id="reduce">
         update product_info set product_stock = product_stock-#{counts} where product_id = #{id}
     </update>
