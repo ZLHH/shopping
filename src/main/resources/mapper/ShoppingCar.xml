@@ -16,7 +16,11 @@
     </select>
 
     <select id="querryAllByIds" resultMap="carInfo">
-        select * from shopping_car where product_id =#{ids} AND user_id=#{id} AND status=0
+        select  * from shopping_car where product_id =#{ids} AND user_id=#{id} AND status=0
+    </select>
+
+    <select id="querryAllById" resultMap="carInfo">
+        select product_name,product_price from product_info where product_id =#{ids}
     </select>
 
     <insert id="save" parameterType="com.example.domain.ShoppingCar" useGeneratedKeys="true" keyProperty="id">

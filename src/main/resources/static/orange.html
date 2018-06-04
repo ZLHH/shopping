@@ -291,10 +291,10 @@
                     '                </div>\n' +
                     '            </div>\n' +
                     '            <div class="fk-pd5MallActBtns">\n' +
-                    '                <div class="buttn joincar">\n' +
+                    '                <div class="buttn butto joincar">\n' +
                     '                    加入购物车\n' +
                     '                </div>\n' +
-                    '                <div class="buttn butto">\n' +
+                    '                <div class="buttn butto buy">\n' +
                     '                    立即购买\n' +
                     '                </div>\n' +
                     '            </div>\n' +
@@ -353,6 +353,15 @@
                 }
             }
         });
+    });
+
+    //立即购买
+    $(document).on("click", ".buy", function () {
+        localStorage.clear();
+        var productId=getCookie("productId");
+        localStorage.setItem(productId,productId);
+        console.log(productId);
+        window.location.href='pay.html?productId='+productId;
     });
 
     $(document).on("click", ".prov", function () {

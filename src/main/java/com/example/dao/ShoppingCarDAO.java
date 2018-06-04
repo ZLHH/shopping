@@ -23,5 +23,7 @@ public interface ShoppingCarDAO {
 
     ShoppingCar querryAllByIds(@Param("ids") Integer ids,@Param("id") Integer id);
 
+    ShoppingCar querryAllById(@Param("ids") Integer ids);
+
     void changeStatus(Integer id);
 }

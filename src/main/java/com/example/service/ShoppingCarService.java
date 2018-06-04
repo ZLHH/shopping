@@ -36,6 +36,10 @@ public class ShoppingCarService {
         return shoppingCarDAO.querryAllByIds(ids,id);
     }
 
+    public ShoppingCar querryAllById(Integer ids){
+        return shoppingCarDAO.querryAllById(ids);
+    }
+
     public void changeStatus(Integer id){
         shoppingCarDAO.changeStatus(id);
     }
