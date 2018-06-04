@@ -26,7 +26,7 @@ public class ProductController {
     @ResponseBody
     public Msg showProduct(@RequestParam(value="pageNum",defaultValue="1")Integer pageNum, @RequestParam(value="category")Integer category){
         List<ProductInfo> list = new ArrayList<ProductInfo>();
-        PageHelper.startPage(pageNum, 6);
+        PageHelper.startPage(pageNum, 12);
         list=productService.querryAll(category);
         if(!list.isEmpty()&&list.size()!=0){
             PageInfo<ProductInfo> pageInfo=new PageInfo<>(list);

@@ -357,11 +357,27 @@
 
     //立即购买
     $(document).on("click", ".buy", function () {
-        localStorage.clear();
         var productId=getCookie("productId");
+        var productPrice = getCookie("productPrice");
+        var counts = parseInt(document.getElementById('number').value);
+        var productName = getCookie("productName");
+        localStorage.clear();
         localStorage.setItem(productId,productId);
-        console.log(productId);
-        window.location.href='pay.html?productId='+productId;
+        window.location.href='pay.html';
+        $.ajax({
+            url: '/shoppingcar/save',
+            type: 'post',
+            dataType: "json",
+            data: "productId=" + productId + "&productPrice=" + productPrice+"&counts="+counts+"&productName="+productName,
+            success: function (data) {
+                if (data.code == '100') {
+                    alert(data.msg);
+                    window.location.href = "index.html";
+                } else {
+                    alert("加入失败");
+                }
+            }
+        });
     });
 
     $(document).on("click", ".prov", function () {

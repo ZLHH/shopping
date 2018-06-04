@@ -18,6 +18,12 @@
         $(function() {
             var ele = $(".Caddress");
             $(ele).empty();
+            var plusAdress = '<div class="add">\n' +
+                '        <div  onclick="javascript:onclick_open();">\n' +
+                '            <img src="images/69-Plus.png" />\n' +
+                '        </div>\n' +
+                '    </div>'
+            $(ele).append(plusAdress);
             $.ajax({
                 url: '/order/adresslist',
                 type: 'GET',
@@ -31,12 +37,6 @@
                             var ProductInfo = '<div class="add_mi"><p class="name" style="border-bottom:1px dashed #ccc;line-height:28px;">'+data.name+'</p><p class="adress" style="border-bottom:1px dashed #ccc;line-height:28px;">'+data.adress+'</p><p class="phone">'+data.phone+'</p></div>';
                             $(ele).append(ProductInfo);
                         });
-                        var plusAdress = '<div class="add">\n' +
-                            '        <div  onclick="javascript:onclick_open();">\n' +
-                            '            <img src="images/69-Plus.png" />\n' +
-                            '        </div>\n' +
-                            '    </div>'
-                        $(ele).append(plusAdress);
 
                         $('.Caddress .add_mi').click(function() {
                             $(this).css('background', 'url("images/mail_1.jpg") no-repeat').siblings('.add_mi').css('background', 'url("images/mail.jpg") no-repeat')
@@ -44,8 +44,6 @@
                             sessionStorage.setItem("adress", this.innerText);
                         })
 
-                    }else {
-                        alert(data.msg);
                     }
                 }
             });

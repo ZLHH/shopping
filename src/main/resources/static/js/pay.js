@@ -139,45 +139,27 @@ var vm = new Vue({
     },
     methods: {
         getCar:function(){
-            var id = window.location.href.split("=")[1];
-            if (id!=null){
-                console.log("到这儿了"+id);
-                $.ajax({
-                    type: "POST",
-                    url: '/shoppingcar/listById',
-                    data: "id=" + id,
-                    success: function (data) {
-                        if (data.code == '100') {
-                            vm.shopTableDatas=data.map.shopcartdatas;
-                            console.log(data.map.shopcartdatas);
-                        } else {
-                            alert("购物车无记录");
-                        }
-                    }
-                });
-            }else {
-                var ids = new Array();
-                for(var i=0; i<localStorage.length;i++){
-                    console.log('localStorage里存储的第'+i+'条数据的名字为：'+localStorage.key(i)+',值为：'+localStorage.getItem(localStorage.key(i)));
-                    // ids[i] = localStorage.key(i);
-                    ids.push(localStorage.key(i));
-                }
-                console.log(JSON.stringify(ids));
-                $.ajax({
-                    type: "POST",
-                    url: '/shoppingcar/listByIds',
-                    contentType: "application/json",
-                    data: JSON.stringify(ids),
-                    success: function (data) {
-                        if (data.code == '100') {
-                            vm.shopTableDatas=data.map.shopcartdatas;
-                            console.log(data.map.shopcartdatas);
-                        } else {
-                            alert("购物车无记录");
-                        }
-                    }
-                });
+            var ids = new Array();
+            for(var i=0; i<localStorage.length;i++){
+                console.log('localStorage里存储的第'+i+'条数据的名字为：'+localStorage.key(i)+',值为：'+localStorage.getItem(localStorage.key(i)));
+                // ids[i] = localStorage.key(i);
+                ids.push(localStorage.key(i));
             }
+            console.log(JSON.stringify(ids));
+            $.ajax({
+                type: "POST",
+                url: '/shoppingcar/listByIds',
+                contentType: "application/json",
+                data: JSON.stringify(ids),
+                success: function (data) {
+                    if (data.code == '100') {
+                        vm.shopTableDatas=data.map.shopcartdatas;
+                        console.log(data.map.shopcartdatas);
+                    } else {
+                        alert("购物车无记录");
+                    }
+                }
+            });
         },
         /*商品数量增加减少函数*/
         goodNum:function(item,way){
