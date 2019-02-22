@@ -5,14 +5,12 @@ import com.example.domain.ProductInfo;
 import com.example.domain.ShoppingCar;
 import com.example.domain.UserMain;
 import com.example.service.IndexService;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
@@ -49,7 +47,7 @@ public class IndexController {
             Set<String> items = new HashSet<>();//辅助存储物品集合
             Map<String, Integer> userID = new HashMap<>();//辅助存储每一个用户的用户ID映射
             Map<Integer, String> idUser = new HashMap<>();//辅助存储每一个ID对应的用户映射
-            for(int i = 0; i < userMainList.size() ; i++){//依次处理N个用户 输入数据  以空格间隔
+            for(int i = 0; i < userMainList.size() ; i++){//依次处理N个用户
                 List<ShoppingCar> shoppingCarList = indexService.getAllShoppingCarById(userMainList.get(i).getId());
                 int length = shoppingCarList.size();
                 userItemLength.put(userMainList.get(i).getId().toString(), length);//eg: A 3
